@@ -1,0 +1,78 @@
+import 'package:business/widgets/login_form.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+class LoginPage extends StatefulWidget {
+  LoginPage({Key key}) : super(key: key);
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarDividerColor: Colors.transparent,
+    ));
+
+    return Scaffold(
+        body: GestureDetector(
+          //GESTUREDETECTOR NOS PERMITE PARA MINIMIZAR EL TECLADO AL HACER CLICK A CUALQUIER LADO USANDO ONTAP CON IOS
+         /*  onTap: () {
+            FocusScope.of(context).unfocus();
+          }, */
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            //color: Colors.white, //PARA DETECTAR EL CLICK FUERA DEL FORM EN IOS.
+            child: SingleChildScrollView(
+              child: Column(children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Column(
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(height: 50),
+                          Center(
+                            child: Container(
+                              child:
+                                  Image.asset("images/img01.png", scale: 6.0),
+                              padding: EdgeInsets.only(bottom: 20),
+                            ),
+                          ),
+                          Center(
+                              child: Text("Bienvenido!!",
+                                  style: TextStyle(
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center)),
+                          SizedBox(height: 10),
+                          Center(
+                              child: Text(
+                                  "Inicie sesion para acceder a su cuenta",
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.normal),
+                                  textAlign: TextAlign.center)),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 60,
+                      ),
+                      LoginForm()
+                    ],
+                  ),
+                ),
+              ]),
+            ),
+          ),
+        ));
+  }
+}
