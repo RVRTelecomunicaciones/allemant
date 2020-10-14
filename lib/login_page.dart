@@ -4,6 +4,8 @@ import 'package:business/widgets/login_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'blocs/authentication/bloc/authentication_bloc.dart';
+
 class LoginPage extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute<void>(builder: (_) => LoginPage());
@@ -20,6 +22,8 @@ class LoginPage extends StatelessWidget {
             return LoginBloc(
               authenticationRepository:
                   RepositoryProvider.of<AuthRepository>(context),
+              //authenticationRepository: authenticationRepository,
+              //authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
             );
           },
           child: LoginForm(),

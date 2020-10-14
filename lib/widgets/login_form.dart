@@ -40,7 +40,7 @@ class _UsernameInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.username != current.username,
       builder: (context, state) {
         return TextField(
-          key: const Key('loginForm_usernameInput_textField'),
+          key: const Key('inputUsuario'),
           onChanged: (username) =>
               context.bloc<LoginBloc>().add(LoginUsernameChanged(username)),
           decoration: InputDecoration(
@@ -60,7 +60,7 @@ class _PasswordInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
         return TextField(
-          key: const Key('loginForm_passwordInput_textField'),
+          key: const Key('inputContraseña'),
           onChanged: (password) =>
               context.bloc<LoginBloc>().add(LoginPasswordChanged(password)),
           obscureText: true,

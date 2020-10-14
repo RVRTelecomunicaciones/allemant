@@ -26,6 +26,7 @@ class AuthenticationBloc
   }
   final AuthRepository _authenticationRepository;
   final UserRepository _userRepository;
+  //final User user;
   StreamSubscription<AuthenticationStatus> _authenticationStatusSubscription;
 
   @override

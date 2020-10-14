@@ -75,15 +75,17 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.zero,
             children: <Widget>[
               DrawerHeader(
+                padding: EdgeInsets.zero,
+                margin: EdgeInsets.zero,
                 decoration: BoxDecoration(
                   color: Colors.blue,
                 ),
                 child: UserAccountsDrawerHeader(
                   accountName:
-                      Text(context.bloc<AuthenticationBloc>().state.user.id),
+                      Text(context.bloc<AuthenticationBloc>().state.user.usuId),
                   accountEmail: Text("congnghe4@thangloigroup.vn"),
                   currentAccountPicture: CircleAvatar(
-                    radius: 30.0,
+                    radius: 40.0,
                     backgroundImage: AssetImage('images/person/person_1.png'),
                     backgroundColor: Colors.white,
                   ),
@@ -93,14 +95,14 @@ class HomePage extends StatelessWidget {
                 leading: Icon(
                   Icons.account_circle,
                 ),
-                title: Text('Thông tin cá nhân'),
+                title: Text('Registrados'),
                 onTap: () {
                   //ProfileScreen(context);
                 },
               ),
               ListTile(
                 leading: Icon(Icons.settings),
-                title: Text('Cài đặt'),
+                title: Text('Configurar'),
                 onTap: () {
                   //SettingScreen(context);
                 },
