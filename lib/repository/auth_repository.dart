@@ -5,6 +5,7 @@ import 'package:business/models/user.dart';
 import 'package:business/models/useresponse.dart';
 import 'package:meta/meta.dart';
 import 'package:business/network/api_base_helper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
@@ -26,12 +27,17 @@ class AuthRepository {
 
     final response =
         await _helper.post("usuario/logInApp", userLogin.toDatabaseJson());
-    _controller.add(AuthenticationStatus.authenticated);
     /*  User user =
         User(usuId: response.user.usuId, usuNombre: response.user.usuNombre); */
     print(response);
-    //return user;
-    return Useresponse.fromJson(response);
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final dataResponse = Useresponse.fromJson(response);
+    preferences.setString("id", dataResponse.user.usuId);
+
+    _controller.add(AuthenticationStatus.authenticated);
+    return dataResponse;
+    //return Useresponse.fromJson(response);
+    //return Useresponse.fromJson(response);
   }
 
   Stream<AuthenticationStatus> get status async* {

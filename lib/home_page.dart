@@ -83,7 +83,8 @@ class HomePage extends StatelessWidget {
                 child: UserAccountsDrawerHeader(
                   accountName:
                       Text(context.bloc<AuthenticationBloc>().state.user.usuId),
-                  accountEmail: Text("congnghe4@thangloigroup.vn"),
+                  accountEmail: Text(
+                      context.bloc<AuthenticationBloc>().state.user.usuNombre),
                   currentAccountPicture: CircleAvatar(
                     radius: 40.0,
                     backgroundImage: AssetImage('images/person/person_1.png'),

@@ -6,6 +6,7 @@ import 'package:business/repository/auth_repository.dart';
 import 'package:business/repository/user_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';
@@ -54,7 +55,11 @@ class AuthenticationBloc
       case AuthenticationStatus.unauthenticated:
         return const AuthenticationState.unauthenticated();
       case AuthenticationStatus.authenticated:
-        final user = await _tryGetUser();
+        SharedPreferences preferences = await SharedPreferences.getInstance();
+
+        final userID = preferences.getString('id');
+
+        final user = await _tryGetUser(userID);
         return user != null
             ? AuthenticationState.authenticated(user)
             : const AuthenticationState.unauthenticated();
@@ -63,9 +68,9 @@ class AuthenticationBloc
     }
   }
 
-  Future<User> _tryGetUser() async {
+  Future<User> _tryGetUser(String userID) async {
     try {
-      final user = await _userRepository.getUser();
+      final user = await _userRepository.getUsers(userID);
       return user;
     } on Exception {
       return null;

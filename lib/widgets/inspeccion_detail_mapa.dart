@@ -28,6 +28,15 @@ class _InspeccionDetailMapaState extends State<InspeccionMapa> {
   //########GEOLOCATOR
   Position _currentPosition;
   StreamSubscription<Position> _positionStream;
+  //-12.064180, -77.037827
+
+  //##GOOGLE
+  LatLng currentLocation;
+  LatLng get initialPos => currentLocation;
+  TextEditingController locationController = TextEditingController();
+  String header = "";
+
+  bool buscando = false;
 
   //######PERITO ICON
   BitmapDescriptor pinLocationUserIcon;
@@ -177,6 +186,8 @@ class _InspeccionDetailMapaState extends State<InspeccionMapa> {
       setState(() {
         print(position.latitude);
         _currentPosition = position;
+
+        currentLocation = LatLng(position.latitude, position.longitude);
 
         if (mapController != null) {
           mapController.animateCamera(
@@ -340,6 +351,12 @@ class _InspeccionDetailMapaState extends State<InspeccionMapa> {
     );
   }
 
+  void onCameraMove(CameraPosition position) async {
+    setState(() {});
+    buscando = false;
+    currentLocation = position.target;
+  }
+
   Widget mapWidget() {
     return Stack(
       children: <Widget>[
@@ -358,19 +375,36 @@ class _InspeccionDetailMapaState extends State<InspeccionMapa> {
             onMapCreated: _onMapCreated,
             //UN MARCADOR
             markers: Set.of((markers != null) ? [marker] : []),
+            onCameraMove: onCameraMove,
 
             //PARA UTILIZAR VARIOS MARCADORES
             //markers: markers != null ? Set<Marker>.from(markers) : null,
             //markers: _createMarker(),
             compassEnabled: true,
-            //myLocationButtonEnabled: false,
+            zoomControlsEnabled: false,
+            myLocationEnabled: true,
+            myLocationButtonEnabled: false,
             initialCameraPosition: CameraPosition(
                 target: LatLng(
                     _currentPosition.latitude, _currentPosition.longitude),
                 zoom: 16.0),
+            onCameraIdle: () async {
+              buscando = true;
+              setState(() {});
+              getMoveCamera();
+            },
           ),
         ),
       ],
     );
+  }
+
+  void getMoveCamera() async {
+    List<Placemark> placemark = await Geolocator().placemarkFromCoordinates(
+        currentLocation.latitude, currentLocation.longitude);
+    locationController.text = placemark[0].name;
+    setState(() {
+      header = placemark[0].name.toString();
+    });
   }
 }
