@@ -1,12 +1,11 @@
 import 'package:business/blocs/authentication/bloc/authentication_bloc.dart';
 import 'package:business/login_page.dart';
+import 'package:business/menu_page.dart';
 import 'package:business/repository/auth_repository.dart';
 import 'package:business/repository/user_repository.dart';
 import 'package:business/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'home_page.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -55,7 +54,7 @@ class _AppViewState extends State<AppView> {
             switch (state.status) {
               case AuthenticationStatus.authenticated:
                 _navigator.pushAndRemoveUntil<void>(
-                  HomePage.route(),
+                  HomeMenu.route(),
                   (route) => false,
                 );
                 break;

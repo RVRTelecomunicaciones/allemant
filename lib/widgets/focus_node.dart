@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 
-class FocusNode extends StatefulWidget {
-  FocusNode({Key key}) : super(key: key);
+class FocusNodes extends StatefulWidget {
+  FocusNodes({Key key}) : super(key: key);
 
   @override
   _FocusNodeState createState() => _FocusNodeState();
 }
 
-class _FocusNodeState extends State<FocusNode> {
-  
+class _FocusNodeState extends State<FocusNodes> {
   FocusNode _focusNode1;
   FocusNode _focusNode2;
   @override
   void dispose() {
-    super.dispose();
     _focusNode1.dispose();
-    _focusNode2.dispose(); 
+    _focusNode2.dispose();
+    super.dispose();
   }
 
- 
-
-   @override
+  @override
   void initState() {
     super.initState();
     _focusNode1 = new FocusNode();
@@ -37,8 +34,6 @@ class _FocusNodeState extends State<FocusNode> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
-    );
+    return Container();
   }
 }

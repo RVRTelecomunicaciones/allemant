@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="business"
+        android:label="ALLEMANT PERITOS"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
         android:value="AIzaSyCqfRHZFDEmm55bcGlvRpBM7ii7a5K7kxU"/>

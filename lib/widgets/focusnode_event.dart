@@ -14,7 +14,6 @@ class FocusNode_Event extends StatefulWidget {
 }
 
 class _FocusNode_EventState extends State<FocusNode_Event> {
-
   bool _focused = false;
 
   void dispose() {
@@ -52,16 +51,13 @@ class _FocusNode_EventState extends State<FocusNode_Event> {
                 color: Colors.grey,
                 fontSize: 14.0,
               ),
-              prefixIcon:
-                  Icon(widget.prefixIcon, color: getPrefixIconColor()),
+              prefixIcon: Icon(widget.prefixIcon, color: getPrefixIconColor()),
               enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
                   borderSide: BorderSide(color: Colors.grey)),
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
-                  borderSide: BorderSide(color: Colors.blue)
-            )
-          ),
+                  borderSide: BorderSide(color: Colors.blue))),
         )
       ],
     );
@@ -70,5 +66,4 @@ class _FocusNode_EventState extends State<FocusNode_Event> {
   Color getPrefixIconColor() {
     return widget.focusName.hasFocus ? Colors.blue : Colors.grey;
   }
-
 }
